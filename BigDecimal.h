@@ -25,12 +25,14 @@ SOFTWARE.
 #include<sstream>
 #include <algorithm>
 #include <limits.h>
+
 template <typename T>
 std::string to_string(const T& t) { 
    std::stringstream ss; 
    ss<<t; 
    return ss.str(); 
 } 
+
 class BigDecimal {
 
 public:
@@ -45,7 +47,7 @@ public:
     BigDecimal(float num) : value() { std::stringstream ss; ss << num; value = ss.str(); }
     BigDecimal(double num) : value() { std::stringstream ss; ss << num; value = ss.str(); }
     BigDecimal(long double num) { std::stringstream ss; ss << num; value = ss.str(); }
-	
+
     BigDecimal operator+(const BigDecimal& num) {
         return BigDecimal::add(value, num.value);
     }
@@ -206,9 +208,9 @@ public:
 
     static std::string log2(const std::string &lhs,int scale = INT_MIN);
 
-    static std::string ln(const std::string &lhs,int scale = INT_MIN);
-
-    static std::string log(const std::string &lhs,int scale = INT_MIN);
+    // didn't implemented yet
+    // static std::string ln(const std::string &lhs,int scale = INT_MIN);
+    // static std::string log(const std::string &lhs,int scale = INT_MIN);
 
     static std::string sin(const std::string &lhs,int scale = INT_MIN);
 

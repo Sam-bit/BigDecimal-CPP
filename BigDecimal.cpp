@@ -54,19 +54,18 @@ std::string trimTrailingZeros(std::string input) {
     if(input.find(".") != std::string::npos)
     {
       std::string result = "";
-      std::size_t i;
       std::string inp(input.rbegin(),input.rend());
       result = inp.erase(0,std::min(inp.find_first_not_of('0'),inp.size()-1));
       if(result.at(0) == '.')
       {
         result = result.erase(0,1);
+      }
+      return std::string(result.rbegin(),result.rend());
     }
-    return std::string(result.rbegin(),result.rend());
-  }
     else
     {
       return input;
-  }
+    }
 }
 //parse a number into parts, returns scale on success and -1 on error
 static int parse_number (const std::string &s, int &lsign, int &lint, int &ldot, int &lfrac, int &lscale) {
@@ -853,10 +852,9 @@ std::string BigDecimal::round (const std::string &lhs, int scale) {
   return ret;
 }
 
-std::string BigDecimal::ln(const std::string &lhs, int scale)
-{
-  
-}
+// didn't implemented yet
+// std::string BigDecimal::ln(const std::string &lhs, int scale)
+// {}
 
 std::string BigDecimal::log2 (const std::string &lhs, int scale)
 {
@@ -930,24 +928,24 @@ std::string BigDecimal::sin(const std::string &lhs, int scale)
   return sum;
 }
 
-std::string BigDecimal::log (const std::string &lhs, int scale)
-{
-  if (lhs.empty()) {
-      return round (ZERO, scale);
-    }
-
-  int lsign, lint, ldot, lfrac, lscale;
-    if (parse_number (lhs, lsign, lint, ldot, lfrac, lscale) < 0) {
-      std::cerr << "\""<<lhs.c_str()<<"\" Is Not A Number"<< std::endl;
-      return _zero(scale);
-    }
-    if(lsign < 0)
-  {
-    std::cerr << "\""<<lhs.c_str()<<"\" Cannot Be A Negative Number"<< std::endl;
-      return _zero(scale);
-  }
-  return std::string(BigDecimal::divide(BigDecimal::ln(lhs,0),BigDecimal::ln(to_string("10"),0),0));
-}
+//std::string BigDecimal::log (const std::string &lhs, int scale)
+//{
+//  if (lhs.empty()) {
+//      return round (ZERO, scale);
+//    }
+//
+//  int lsign, lint, ldot, lfrac, lscale;
+//    if (parse_number (lhs, lsign, lint, ldot, lfrac, lscale) < 0) {
+//      std::cerr << "\""<<lhs.c_str()<<"\" Is Not A Number"<< std::endl;
+//      return _zero(scale);
+//    }
+//    if(lsign < 0)
+//  {
+//    std::cerr << "\""<<lhs.c_str()<<"\" Cannot Be A Negative Number"<< std::endl;
+//      return _zero(scale);
+//  }
+//  return std::string(BigDecimal::divide(BigDecimal::ln(lhs,0),BigDecimal::ln(to_string("10"),0),0));
+//}
 
 std::string BigDecimal::stringToHex(std::string &lhs,int caps)
 {
