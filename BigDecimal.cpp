@@ -149,8 +149,7 @@ static int _compareTo (const char *lhs, int lint, int ldot, int lfrac, int lscal
     }
   }
 
-  int i;
-  for (i = 0; (i < lscale || i < rscale) && i < scale; i++) {
+  for (int i = 0; (i < lscale || i < rscale) && i < scale; i++) {
     int lchar = (i < lscale ? lhs[lfrac + i] : '0');
     int rchar = (i < rscale ? rhs[rfrac + i] : '0');
     if (lchar != rchar) {
