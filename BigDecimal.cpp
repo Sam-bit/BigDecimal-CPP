@@ -34,7 +34,7 @@ static const std::string ONE ("1");
 static const std::string ZERO ("0");
 static const std::string TEN("10");
 static void _noassert() { }
-static std::string getLeftOfDot(std::string &value) {
+static std::string getLeftOfDot(const std::string &value) {
   std::size_t dot = value.find('.');
   if(dot != std::string::npos) {
     if(dot == 0)
@@ -43,7 +43,7 @@ static std::string getLeftOfDot(std::string &value) {
       return std::string("-0");
     return value.substr(0, dot);
     }else{
-        return value;
+      return value;
     }
 }
 static void _assert(const char *assertion, const char *file, int line) {
@@ -952,25 +952,25 @@ std::string BigDecimal::sin(const std::string &lhs, int scale)
 //  return std::string(BigDecimal::divide(BigDecimal::ln(lhs,0),BigDecimal::ln(to_string("10"),0),0));
 //}
 
-std::string BigDecimal::stringToHex(std::string &lhs,int caps)
-{
-  
-  long int i = 1;
-  int temp;
-  lhs = getLeftOfDot(lhs);
-  std::string quotient = lhs,hexoutput("");
-  temp = atoi(modulus(quotient,to_string("16"),0).c_str());
-//	while(compareTo(quotient,ZERO,0) != 0)
-//	{
-//		temp = atoi(modulus(quotient,to_string("16"),0).c_str());
-//		if(temp < 10)
-//			temp = temp + 48;
-//		else
-//			temp = temp + 55;
-//		hexoutput[i++] = temp;
-//		quotient = divide(quotient,to_string("16"),0);
-//	}
-  std::cout<<temp;
-  return hexoutput;
-
-}
+//std::string BigDecimal::stringToHex(const std::string &lhs,int caps)
+//{
+//  long int i = 1;
+//  int temp;
+//  lhs = getLeftOfDot(lhs);
+//  std::string quotient = lhs,hexoutput("");
+//  temp = atoi(modulus(quotient,to_string("16"),0).c_str());
+//
+////	while(compareTo(quotient,ZERO,0) != 0)
+////	{
+////		temp = atoi(modulus(quotient,to_string("16"),0).c_str());
+////		if(temp < 10)
+////			temp = temp + 48;
+////		else
+////			temp = temp + 55;
+////		hexoutput[i++] = temp;
+////		quotient = divide(quotient,to_string("16"),0);
+////	}
+//  
+//  std::cout<<temp;
+//  return hexoutput;
+//}

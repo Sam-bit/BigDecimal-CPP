@@ -41,27 +41,27 @@ public:
     BigDecimal(double num) : value() { std::stringstream ss; ss << num; value = ss.str(); }
     BigDecimal(long double num) { std::stringstream ss; ss << num; value = ss.str(); }
 
-    BigDecimal operator+(const BigDecimal& num) {
+    BigDecimal operator+(const BigDecimal& num) const {
         return BigDecimal::add(value, num.value);
     }
 
-    BigDecimal operator-(const BigDecimal& num) {
+    BigDecimal operator-(const BigDecimal& num) const {
         return BigDecimal::subtract(value, num.value);
     }
 
-    BigDecimal operator*(const BigDecimal& num) {
+    BigDecimal operator*(const BigDecimal& num) const {
         return BigDecimal::multiply(value, num.value);
     }
 
-    BigDecimal operator/(const BigDecimal& num) {
+    BigDecimal operator/(const BigDecimal& num) const {
         return BigDecimal::divide(value, num.value);
     }
 
-    BigDecimal operator%(const BigDecimal& num) {
+    BigDecimal operator%(const BigDecimal& num) const {
         return BigDecimal::modulus(value, num.value);
     }
 
-    BigDecimal operator^(const BigDecimal& num) {
+    BigDecimal operator^(const BigDecimal& num) const {
         return BigDecimal::pow(value, num.value);
     }
 
@@ -81,72 +81,72 @@ public:
         value = BigDecimal::pow(value, num.value);
     }
 
-    bool operator > (const BigDecimal& num) {
+    bool operator > (const BigDecimal& num) const {
         return BigDecimal::compareTo(value, num.value)>0;
     }
-    bool operator >= (const BigDecimal& num) {
+    bool operator >= (const BigDecimal& num) const {
         return BigDecimal::compareTo(value, num.value)>=0;
     }
-    bool operator == (const BigDecimal& num) {
+    bool operator == (const BigDecimal& num) const {
         return BigDecimal::compareTo(value, num.value)==0;
     }
-    bool operator < (const BigDecimal& num) {
+    bool operator < (const BigDecimal& num) const {
         return BigDecimal::compareTo(value, num.value)<0;
     }
-    bool operator <= (const BigDecimal& num) {
+    bool operator <= (const BigDecimal& num) const {
         return BigDecimal::compareTo(value, num.value)<=0;
     }
 
-    int toInt() {
+    int toInt() const {
         std::istringstream buffer(value);
         int ret;
         buffer >> ret;
         return ret;
     }
 
-    unsigned int toUInt() {
+    unsigned int toUInt() const {
         std::istringstream buffer(value);
         unsigned int ret;
         buffer >> ret;
         return ret;
     }
 
-    long long toLongLong() {
+    long long toLongLong() const {
         std::istringstream buffer(value);
         long long ret;
         buffer >> ret;
         return ret;
     }
 
-    unsigned long long toULongLong() {
+    unsigned long long toULongLong() const {
         std::istringstream buffer(value);
         unsigned long long ret;
         buffer >> ret;
         return ret;
     }
 
-    long double toLongDouble() {
+    long double toLongDouble() const {
         std::istringstream buffer(value);
         long double ret;
         buffer >> ret;
         return ret;
     }
 
-    double toDouble() {
+    double toDouble() const {
         std::istringstream buffer(value);
         double ret;
         buffer >> ret;
         return ret;
     }
 
-    float toFloat() {
+    float toFloat() const {
         std::istringstream buffer(value);
         float ret;
         buffer >> ret;
         return ret;
     }
 
-    std::string toString() {
+    std::string toString() const {
         return value;
     }
 
@@ -155,7 +155,7 @@ public:
             value = BigDecimal::round(value, scale);
     }
 
-    std::string getIntPart() {
+    std::string getIntPart() const {
         std::size_t dot = value.find('.');
         if(dot != std::string::npos) {
             if(dot == 0)
@@ -168,7 +168,7 @@ public:
         }
     }
 
-    std::string getDecPart() {
+    std::string getDecPart() const {
         std::size_t dot = value.find('.');
         if(dot != std::string::npos)
             return value.length()>dot+1?value.substr(dot+1):std::string("0");
@@ -206,8 +206,9 @@ public:
 
     static std::string sin(const std::string &lhs,int scale = INT_MIN);
 
-    static std::string stringToHex(std::string &lhs,int caps = 0);
-    };
+    // didn't implemented yet
+    //static std::string stringToHex(const std::string &lhs,int caps = 0);
+};
 
 
 #endif // BIGDECIMAL_H
