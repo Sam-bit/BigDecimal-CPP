@@ -203,17 +203,17 @@ public:
     static std::string round (const std::string &lhs,int scale = INT_MIN);
 
     static int compareTo (const std::string &lhs, const std::string &rhs,int scale = INT_MIN);
-	
-	static std::string log2(const std::string &lhs,int scale = INT_MIN);
-	
-	static std::string ln(const std::string &lhs,int scale = INT_MIN);
-	
-	static std::string log(const std::string &lhs,int scale = INT_MIN);
-	
-	static std::string sin(const std::string &lhs,int scale = INT_MIN);
-	
-	static std::string stringToHex(std::string &lhs,int caps = 0);
-};
+
+    static std::string log2(const std::string &lhs,int scale = INT_MIN);
+
+    static std::string ln(const std::string &lhs,int scale = INT_MIN);
+
+    static std::string log(const std::string &lhs,int scale = INT_MIN);
+
+    static std::string sin(const std::string &lhs,int scale = INT_MIN);
+
+    static std::string stringToHex(std::string &lhs,int caps = 0);
+    };
 
 
 #endif // BIGDECIMAL_H
