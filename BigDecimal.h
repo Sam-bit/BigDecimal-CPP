@@ -206,11 +206,10 @@ public:
 
     static int compareTo (const std::string &lhs, const std::string &rhs,int scale = INT_MIN);
 
-    static std::string log2(const std::string &lhs,int scale = INT_MIN);
-
     // didn't implemented yet
-    // static std::string ln(const std::string &lhs,int scale = INT_MIN);
-    // static std::string log(const std::string &lhs,int scale = INT_MIN);
+    //static std::string log2(const std::string &lhs,int scale = INT_MIN);
+    //static std::string ln(const std::string &lhs,int scale = INT_MIN);
+    //static std::string log(const std::string &lhs,int scale = INT_MIN);
 
     static std::string sin(const std::string &lhs,int scale = INT_MIN);
 

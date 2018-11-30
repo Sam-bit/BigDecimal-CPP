@@ -856,27 +856,27 @@ std::string BigDecimal::round (const std::string &lhs, int scale) {
 // std::string BigDecimal::ln(const std::string &lhs, int scale)
 // {}
 
-std::string BigDecimal::log2 (const std::string &lhs, int scale)
-{
-  if (lhs.empty()) {
-      return BigDecimal::round (ZERO, scale);
-    }
-
-    if (scale == INT_MIN) {
-      scale = _scale;
-    }
-  int lsign, lint, ldot, lfrac, lscale;
-    if (parse_number (lhs, lsign, lint, ldot, lfrac, lscale) < 0) {
-      std::cerr << "\""<<lhs.c_str()<<"\" Is Not A Number"<< std::endl;
-      return "0";
-    }
-    if(lsign < 0)
-  {
-    std::cerr << "\""<<lhs.c_str()<<"\" Cannot Be A Negative Number"<< std::endl;
-      return "0";
-  }
-  return (BigDecimal::compareTo(lhs,ONE) > 0)? std::string(BigDecimal::add(ONE,BigDecimal::log(BigDecimal::divide(lhs,TEN)))):ZERO;
-}
+//std::string BigDecimal::log2 (const std::string &lhs, int scale)
+//{
+//  if (lhs.empty()) {
+//      return BigDecimal::round (ZERO, scale);
+//    }
+//
+//    if (scale == INT_MIN) {
+//      scale = _scale;
+//    }
+//  int lsign, lint, ldot, lfrac, lscale;
+//    if (parse_number (lhs, lsign, lint, ldot, lfrac, lscale) < 0) {
+//      std::cerr << "\""<<lhs.c_str()<<"\" Is Not A Number"<< std::endl;
+//      return "0";
+//    }
+//    if(lsign < 0)
+//  {
+//    std::cerr << "\""<<lhs.c_str()<<"\" Cannot Be A Negative Number"<< std::endl;
+//      return "0";
+//  }
+//  return (BigDecimal::compareTo(lhs,ONE) > 0)? std::string(BigDecimal::add(ONE,BigDecimal::log(BigDecimal::divide(lhs,TEN)))):ZERO;
+//}
 
 std::string fact(std::string a)
 {
