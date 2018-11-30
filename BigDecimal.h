@@ -151,7 +151,7 @@ public:
     }
 
     void round(int scale) {
-        if(scale>=1)
+        if(scale>=0)
             value = BigDecimal::round(value, scale);
     }
 
