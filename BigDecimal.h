@@ -150,6 +150,11 @@ public:
         return value;
     }
 
+    std::string toString(int minPrecision) const {
+        // minPrecision is minimum of decimal digits after dot
+        return appendDecimalZeroesUp(value, minPrecision);
+    }
+
     void round(int scale) {
         if(scale>=0)
             value = BigDecimal::round(value, scale);
@@ -196,6 +201,8 @@ public:
     static std::string multiply (const std::string &lhs, const std::string &rhs,int scale = INT_MIN);
 
     static std::string round (const std::string &lhs,int scale = INT_MIN);
+
+    static std::string appendDecimalZeroesUp(const std::string &lhs,int minPrecision);
 
     static int compareTo (const std::string &lhs, const std::string &rhs,int scale = INT_MIN);
 

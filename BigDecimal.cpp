@@ -824,6 +824,28 @@ int BigDecimal::compareTo (const std::string &lhs, const std::string &rhs, int s
   return (1 - 2 * (lsign < 0)) * _compareTo (lhs.c_str(), lint, ldot, lfrac, lscale, rhs.c_str(), rint, rdot, rfrac, rscale, scale);
 }
 
+std::string BigDecimal::appendDecimalZeroesUp(const std::string &lhs,int minPrecision) {
+    if (lhs.empty()) {
+      return BigDecimal::appendDecimalZeroesUp (ZERO, minPrecision);
+    }
+    if (minPrecision <= 0) {
+      return lhs;
+    }
+
+    int lsign, lint, ldot, lfrac, lscale;
+    if (parse_number (lhs, lsign, lint, ldot, lfrac, lscale) < 0) {
+      std::cerr << "\""<<lhs.c_str()<<"\" Is Not A Number"<< std::endl;
+      return std::string();
+    }
+
+    if (minPrecision > lscale) {
+      return lhs + std::string(minPrecision - lscale, '0');
+    }
+    else {
+      return lhs;
+    }
+}
+
 std::string BigDecimal::round (const std::string &lhs, int scale) {
     if (lhs.empty()) {
       return BigDecimal::round (ZERO, scale);
@@ -833,15 +855,15 @@ std::string BigDecimal::round (const std::string &lhs, int scale) {
       scale = _scale;
     }
 
-   if (scale < 0) {
-     std::cerr << "Scale ("<<to_string(scale).c_str()<<") Cant Be Negative!!!"<< std::endl;
-     scale = 0;
-   }
+    if (scale < 0) {
+      std::cerr << "Scale ("<<to_string(scale).c_str()<<") can't be negative!!!"<< std::endl;
+      scale = 0;
+    }
 
     int lsign, lint, ldot, lfrac, lscale;
     if (parse_number (lhs, lsign, lint, ldot, lfrac, lscale) < 0) {
       std::cerr << "\""<<lhs.c_str()<<"\" Is Not A Number"<< std::endl;
-      return 0;
+      return std::string();
     }
 
     int len = lhs.size();
