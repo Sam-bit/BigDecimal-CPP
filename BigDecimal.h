@@ -20,18 +20,11 @@ SOFTWARE.
 #ifndef BIGDECIMAL_H
 #define BIGDECIMAL_H
 
-#include<string>
-#include<iostream>
-#include<sstream>
+#include <string>
+#include <iostream>
+#include <sstream>
 #include <algorithm>
 #include <limits.h>
-
-template <typename T>
-std::string to_string(const T& t) { 
-   std::stringstream ss; 
-   ss<<t; 
-   return ss.str(); 
-} 
 
 class BigDecimal {
 

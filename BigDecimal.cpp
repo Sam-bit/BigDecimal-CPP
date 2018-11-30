@@ -50,6 +50,12 @@ static void _assert(const char *assertion, const char *file, int line) {
     std::cerr<<"Critical Error in: "<<assertion<<", File '"<<file<<"' in line "<<line<<"."<<std::endl;
     exit(-1);
 }
+template <typename T>
+static std::string to_string(const T& t) { 
+   std::stringstream ss; 
+   ss<<t; 
+   return ss.str(); 
+} 
 std::string trimTrailingZeros(std::string input) {
     if(input.find(".") != std::string::npos)
     {
