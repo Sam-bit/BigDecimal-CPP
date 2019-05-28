@@ -47,8 +47,14 @@ static std::string getLeftOfDot(const std::string &value) {
     }
 }
 static void _assert(const char *assertion, const char *file, int line) {
-    std::cerr<<"Critical Error in: "<<assertion<<", File '"<<file<<"' in line "<<line<<"."<<std::endl;
-    exit(-1);
+#if 0  
+  std::cerr<<"Critical Error in: "<<assertion<<", File '"<<file<<"' in line "<<line<<"."<<std::endl;
+  exit(-1);
+#else
+  std::ostringstream ss;
+  ss<<"Critical Error in: "<<assertion<<", File '"<<file<<"' in line "<<line<<".";
+  throw std::logic_error(ss.str().c_str());
+#endif
 }
 template <typename T>
 static std::string to_string(const T& t) { 
