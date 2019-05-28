@@ -839,7 +839,11 @@ std::string BigDecimal::appendDecimalZeroesUp(const std::string &lhs,int minPrec
     }
 
     if (minPrecision > lscale) {
-      return lhs + std::string(minPrecision - lscale, '0');
+      std::string res = lhs;
+      if (ldot == res.length())
+        res += ".";
+      res += std::string(minPrecision - lscale, '0');
+      return res;
     }
     else {
       return lhs;
