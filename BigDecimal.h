@@ -20,17 +20,12 @@ SOFTWARE.
 #ifndef BIGDECIMAL_H
 #define BIGDECIMAL_H
 
-#include<string>
-#include<iostream>
-#include<sstream>
+#include <string>
+#include <iostream>
+#include <sstream>
 #include <algorithm>
 #include <limits.h>
-template <typename T>
-std::string to_string(const T& t) { 
-   std::stringstream ss; 
-   ss<<t; 
-   return ss.str(); 
-} 
+
 class BigDecimal {
 
 public:
@@ -45,28 +40,28 @@ public:
     BigDecimal(float num) : value() { std::stringstream ss; ss << num; value = ss.str(); }
     BigDecimal(double num) : value() { std::stringstream ss; ss << num; value = ss.str(); }
     BigDecimal(long double num) { std::stringstream ss; ss << num; value = ss.str(); }
-	
-    BigDecimal operator+(const BigDecimal& num) {
+
+    BigDecimal operator+(const BigDecimal& num) const {
         return BigDecimal::add(value, num.value);
     }
 
-    BigDecimal operator-(const BigDecimal& num) {
+    BigDecimal operator-(const BigDecimal& num) const {
         return BigDecimal::subtract(value, num.value);
     }
 
-    BigDecimal operator*(const BigDecimal& num) {
+    BigDecimal operator*(const BigDecimal& num) const {
         return BigDecimal::multiply(value, num.value);
     }
 
-    BigDecimal operator/(const BigDecimal& num) {
+    BigDecimal operator/(const BigDecimal& num) const {
         return BigDecimal::divide(value, num.value);
     }
 
-    BigDecimal operator%(const BigDecimal& num) {
+    BigDecimal operator%(const BigDecimal& num) const {
         return BigDecimal::modulus(value, num.value);
     }
 
-    BigDecimal operator^(const BigDecimal& num) {
+    BigDecimal operator^(const BigDecimal& num) const {
         return BigDecimal::pow(value, num.value);
     }
 
@@ -86,81 +81,86 @@ public:
         value = BigDecimal::pow(value, num.value);
     }
 
-    bool operator > (const BigDecimal& num) {
+    bool operator > (const BigDecimal& num) const {
         return BigDecimal::compareTo(value, num.value)>0;
     }
-    bool operator >= (const BigDecimal& num) {
+    bool operator >= (const BigDecimal& num) const {
         return BigDecimal::compareTo(value, num.value)>=0;
     }
-    bool operator == (const BigDecimal& num) {
+    bool operator == (const BigDecimal& num) const {
         return BigDecimal::compareTo(value, num.value)==0;
     }
-    bool operator < (const BigDecimal& num) {
+    bool operator < (const BigDecimal& num) const {
         return BigDecimal::compareTo(value, num.value)<0;
     }
-    bool operator <= (const BigDecimal& num) {
+    bool operator <= (const BigDecimal& num) const {
         return BigDecimal::compareTo(value, num.value)<=0;
     }
 
-    int toInt() {
+    int toInt() const {
         std::istringstream buffer(value);
         int ret;
         buffer >> ret;
         return ret;
     }
 
-    unsigned int toUInt() {
+    unsigned int toUInt() const {
         std::istringstream buffer(value);
         unsigned int ret;
         buffer >> ret;
         return ret;
     }
 
-    long long toLongLong() {
+    long long toLongLong() const {
         std::istringstream buffer(value);
         long long ret;
         buffer >> ret;
         return ret;
     }
 
-    unsigned long long toULongLong() {
+    unsigned long long toULongLong() const {
         std::istringstream buffer(value);
         unsigned long long ret;
         buffer >> ret;
         return ret;
     }
 
-    long double toLongDouble() {
+    long double toLongDouble() const {
         std::istringstream buffer(value);
         long double ret;
         buffer >> ret;
         return ret;
     }
 
-    double toDouble() {
+    double toDouble() const {
         std::istringstream buffer(value);
         double ret;
         buffer >> ret;
         return ret;
     }
 
-    float toFloat() {
+    float toFloat() const {
         std::istringstream buffer(value);
         float ret;
         buffer >> ret;
         return ret;
     }
 
-    std::string toString() {
+    std::string toString() const {
         return value;
     }
 
+    std::string toString(int minPrecision) const {
+        // minPrecision is minimum of decimal digits after dot
+        return appendDecimalZeroesUp(value, minPrecision);
+    }
+
     void round(int scale) {
-        if(scale>=1)
+        if(scale>=0)
             value = BigDecimal::round(value, scale);
     }
 
-    std::string getIntPart() {
+    std::string getIntPart() const {
         std::size_t dot = value.find('.');
         if(dot != std::string::npos) {
             if(dot == 0)
@@ -173,7 +173,7 @@ public:
         }
     }
 
-    std::string getDecPart() {
+    std::string getDecPart() const {
         std::size_t dot = value.find('.');
         if(dot != std::string::npos)
             return value.length()>dot+1?value.substr(dot+1):std::string("0");
@@ -202,17 +202,19 @@ public:
 
     static std::string round (const std::string &lhs,int scale = INT_MIN);
 
+    static std::string appendDecimalZeroesUp(const std::string &lhs,int minPrecision);
+
     static int compareTo (const std::string &lhs, const std::string &rhs,int scale = INT_MIN);
-	
-	static std::string log2(const std::string &lhs,int scale = INT_MIN);
-	
-	static std::string ln(const std::string &lhs,int scale = INT_MIN);
-	
-	static std::string log(const std::string &lhs,int scale = INT_MIN);
-	
-	static std::string sin(const std::string &lhs,int scale = INT_MIN);
-	
-	static std::string stringToHex(std::string &lhs,int caps = 0);
+
+    // didn't implemented yet
+    //static std::string log2(const std::string &lhs,int scale = INT_MIN);
+    //static std::string ln(const std::string &lhs,int scale = INT_MIN);
+    //static std::string log(const std::string &lhs,int scale = INT_MIN);
+
+    static std::string sin(const std::string &lhs,int scale = INT_MIN);
+
+    // didn't implemented yet
+    //static std::string stringToHex(const std::string &lhs,int caps = 0);
 };
 
 
