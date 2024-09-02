@@ -26,8 +26,16 @@ int main(int argc, char** argv) {
 	BigDecimal C;
 	BigDecimal A("64345443243223456776535253647568768574635423567465564242343231");
 	BigDecimal B("14234324257568698789685764354657468576758746352435675486597695857463343243");
-	C = A+B;
-	cout << "\nC = " << C.toString();
+	cout<<"A = "<<A.toString()<<endl;
+	cout<<"B = "<<B.toString()<<endl;
+	C = A + B;
+	cout << "A + B = " << C.toString()<<endl;
+	C = A - B;
+	cout << "A - B = " << C.toString()<<endl;
+	C = A * B;
+	cout << "A * B = " << C.toString()<<endl;
+	C = A / B;
+	cout << "A / B = " << C.toString()<<endl;
 	return 0;
 }
 
