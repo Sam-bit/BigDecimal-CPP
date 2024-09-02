@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1725217164 source:d:\bigdecimal-cpp\bigdecimal\main.cpp
+	<iostream>
+	"BigDecimal.h"
+	<stdio.h>
+
+1725176636 d:\bigdecimal-cpp\bigdecimal\bigdecimal.h
+	<string>
+	<iostream>
+	<sstream>
+	<algorithm>
+	<limits.h>
+
+1725212747 source:d:\bigdecimal-cpp\bigdecimal\bigdecimal.cpp
+	"BigDecimal.h"
+	<string.h>
+	<stdlib.h>
+	<iostream>
+	<stdio.h>
+
